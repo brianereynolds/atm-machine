@@ -1,9 +1,8 @@
 language: java
 env:
-  global:
-  - secure: J11/H7a2F6eCFCuSUyy6oiVWq00JQe4rfQ6iBTC7kCGWmy+oBEyEvwrHv7EDcG0FD9HyMBGPchegrjEDKvVoxLyqugEFVKsaCGHYpz1jauk6F86LBhitcADWVZsLvJbmJeTzX5C2PtvScvJUSg2zm9JojaW9Q9oT3cDPv6Mil3Io8rNoe3dU8En5UvCojakFVKjxZuBPBy85iLX8fBXhhDVFCjMR3xzkdjyouvH8ftIvudZLdMdTJMump9fc3IYVyu6bdceu4yoPWh2yIpTDQ3nAAM6eafVrcLtd3d8qPIjAak8cPSYlZFMSkQqbf/yLLzoNK7SAas78Kf40v72Lzz523caw2es5P5dWZbl4mjkCH5e4lPcPJVce/6q1HpIzreS//xaZlnCQP84Tv6rliMKdzxSPmBarY/TF2wU2hsY7ES+HKqKcDjfJ3C1PBqML3Gp7Vpxjq8mE+czjk9lRdeW996KoWSWT3vvapF173yx9L5FFINxu420UJjCJAnBdgBXvNhEBq5B4jT9cjK7eoxLiKmhkLv7YPoAcNPxmgqMPb60ea2L7zLmR+FSL93Xx1VZRqeBnv83UIIva1OCqgAJDeyTCUBFz3RZzOPlC1lzlIuUKy3D+qOZZXtG8RrjhPmPP9+pRJhOMpSkvlLg5eOWqZB2IB+43IzTQWBDFIj4= 
-  - secure: AcMrAXAU798RspPDyLyMXtg6kki3gyzhO4myoUQ3DrjOBF59V5FOsr5chRvmMbu6WURi3ufqigHCkuVifIy7e80JNvKRbbrLSFB2Uo4lF7PbAUaTY5sHRQ5b97GGny/f4ZHwGtRfr4sEsBEj9bEm5vuoIPOZVyiuN2dXjW1ofBfhyc6U+G0vRI1lERTWsJde2f9qF3JQ78nuChQX9W6GDEIgX2DgJcXD4ynuI3Qaa4zCv3a5vjhlZ+bCyNgxwqjlUpX998GufZT4Xy/5zsXheQusH1DAn6Jw6cgMLcKqWF5SxtDBhsvaNlZlH/qCcCCsAQ6u5FwhWP0bEKF9/Ij3TSsZaLbbm+t/GNK19CdXgmbyrO8Rq3v9RJDqrBPiU8VbFIeE/QWJYyuh1fW8VSHvcqJRP+LNgdmuutx74z3t7OpASsJwYTOMVQ3XKETBCUabqxFQGghapI4SHvLHRRXSkFBMmC+EDuKlE3oqL16EOGTybVHMNztEx+6qcwd2ZzD/L9gnIbzNstXTOwndeqNNLNCs3v44xv9EcQWAsz6jQHFhrLsKgKSwquSNIkW/flV+jNKHlowqvgffXuyijt3VEDuFNjgxnzKCuHRoHu+T5lWXwjBpOharbGnRg/+vc0E6bmwuj7F6lOsJe6alwt8I7dL1/+DCdEKgoDxQc5o46rg=
-  - secure: lzylVhyH/vE6CFGPMjT2yhiYxO1PN161DnGcgBeWIlOCLaa/NrC95FfulQvaZDkY1WeiHOuS3udo03HGz97M98yVcuPT2qX9NMVn2hjzSOPkRuHcTy+oW3XMlWS8qJ8pMXIOWGcnELXTew5Vqxfma45Xk2NOkXACKgBc6C/jJYY0tE3TbqjiNgKsWSbIVLvKc88zzPgKuMNnSo9skgM+7tcEGJsQl2+qkqWawBQskXopYR5KCghBJzERo/G2VnTWRkJ+g/cpTMe/gvpsYV6WHL63k5v6YiAd94T/RM4oCsybo1Hzrw6BdbTGXnJjM4rVyWhhqodUupidQ4l6qKSbshYPm3WHVYP3KT0Nb1BtWco/j88fub3au3IniXofVKdEH7TszBDnpspZC+yHmH58hdziRCOYEoJKF9iULkKsRSzQ2C+LFk2adiGmmceR0EITV5kvqX8B0vV9VUq2ycf0w0i4W8hbPCD49m8EfAe5TV/9T7WHAluZ4vnKkFTcsGFDhJ0n8eZT1LO+c/Sity3aUupiPLpiY0c8xi6KluXIemTfHKfGg+NTwaDirINy85vMXUAntF5Ns0971KtTWzFdQ7TRqWq5/MIX7S578gzxfkuWwCtt5wBj2++2i3qSXdCdQz92xh9WDp34zFHqC5qUWBfvBUFU1V+DFww/u32sB+o=
+  - secure: TODO
+  - secure: TODO
+  - secure: TODO
 
 addons:
   sonarcloud:
@@ -18,6 +17,7 @@ after_success:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - export REPO=$DOCKER_USERNAME/atm-machine
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
-  - docker build -f Dockerfile -t $REPO . 
-  - docker tag `docker images -q $REPO` $REPO:$TAG 
+  - docker build -f Dockerfile -t $REPO .
+  - docker tag `docker images -q $REPO` $REPO:$TAG
   - docker push $REPO
+  global:

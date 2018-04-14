@@ -1,0 +1,15 @@
+server:
+  port: 7000
+
+spring:
+  main:
+    banner-mode: "off"
+
+logging:
+  level:
+    ROOT: ERROR
+    org.springframework: WARN
+    com.acme: DEBUG
+
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

@@ -12,6 +12,7 @@ addons:
 
 
 script:
+  - gradle build
   - sonar-scanner
 
 after_success:

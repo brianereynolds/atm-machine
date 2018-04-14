@@ -33,7 +33,7 @@ public class SafeRepositoryTest {
         Safe safeTenner = safeRepository.getByBankNote(BankNote.TWENTY);
         assertEquals(MSG_INVALID_10_NOTES, safeTenner.getCount(), 30);
 
-        Safe safeFiver = safeRepository.getByBankNote(BankNote.TWENTY);
+        Safe safeFiver = safeRepository.getByBankNote(BankNote.FIVE);
         assertEquals(MSG_INVALID_5_NOTES, safeFiver.getCount(), 20);
     }
 

@@ -21,6 +21,13 @@ repositories {
 sourceCompatibility = javacompatibility
 targetCompatibility = javacompatibility
 
+test {
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/test.exec")
+    }
+}
+
 // Rather convoluted way to remove certain classes from Jacoco analysis
 jacocoTestReport {
     afterEvaluate {

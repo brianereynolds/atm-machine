@@ -10,7 +10,6 @@ addons:
     token:
       secure: "OIj/3UL4Aece/79qQ+in+RsUWE/d5RZH8Utn+vqA8NMMWRtKVLN/crLStnW9uOTTk0I+YLHrLGH7EgRc6kf7DLTuSsQ6h6wEQtwNkRvQ2M2niPxMfGB/v9ZBeDc/kDcsm939JXddxZeWormAzF8XlluVmZAPXDyteLzkhQlU+Y7qF0Zqis+s+kalDebnNZuk+EVBqc05mKIj/eu6wuejS4HcLAtJNlFxO66FPnfuMCGNk3++zurkR9HIBW66kUWynLgebO7WPJBb1rE3fKVlYmWN3Zg/topm3Vw3unWPUSAdDtURKtlSOlU9RsBBltNRVhUQrtwPu1xTxXEo9u8S810lSKoH/vLk4wXAIB1w0F2fd+H15P2qMivHP7LCCalGtcS8b/e5SW//FU2Wm2Fdu+u3AOH8nAzPK4mNVbXr8fGjPOoIX3b4bneNMsS2HiFp3StJSuKDvj8kQwliulgeDc3U1RHGLWhVcwTxtJG98nZuGGGvqzIB4SJktG8RoHOLJ10nNZQuK55rGrB5xdQt8+VXN/hhBpMrp0LImTcLEFqgIQvAd7r/xM2eLtjV102jBrY1SbGJMDvD0QjZmE3ONfgDXAgpKzOFDdSQaTaCgpqyGHyGSqPsLS4qfg4jmCqdMyDtL8TxM/ZtHlda6oeWD588xmsKouEAxz8KruYUPhQ="
 
-
 script:
   - gradle build
   - sonar-scanner

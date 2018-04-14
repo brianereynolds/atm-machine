@@ -27,8 +27,10 @@ http://localhost:7000/v2/api-docs
 ```
 
 ## CI/CD
-# Github: https://github.com/brianereynolds/atm-machine
-# Travis CI: 
+* Github: https://github.com/brianereynolds/atm-machine
+* Travis CI: https://travis-ci.org/brianereynolds/atm-machine
+* Sonar Cloud: https://sonarcloud.io/dashboard?id=brianereynolds%3Aatm-machine
+* Docker Hub: https://hub.docker.com/r/brianereynolds/atm-machine/
 
 ## Kubernetes Monitoring
 

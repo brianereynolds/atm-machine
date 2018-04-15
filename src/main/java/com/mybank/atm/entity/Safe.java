@@ -1,7 +1,5 @@
 package com.mybank.atm.entity;
 
-import com.mybank.atm.BankNote;
-
 import javax.persistence.*;
 
 @Entity

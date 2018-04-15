@@ -1,6 +1,6 @@
 package com.mybank.atm.repo;
 
-import com.mybank.atm.BankNote;
+import com.mybank.atm.entity.BankNote;
 import com.mybank.atm.entity.Safe;
 import org.junit.Test;
 import org.junit.runner.RunWith;

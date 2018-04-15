@@ -1,0 +1,9 @@
+package com.mybank.atm.exception;
+
+public class ServiceException extends Exception {
+    private String message;
+
+    public ServiceException(String message) {
+        this.message = message;
+    }
+}

@@ -1,4 +1,4 @@
-package com.mybank.atm;
+package com.mybank.atm.entity;
 
 public enum BankNote {
 

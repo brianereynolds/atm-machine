@@ -98,7 +98,8 @@ public class AtmController {
      * @param amount The amount requested
      * @return Withdrawal information, the amount withdrawn, the notes withdrawn, and updated account balance information.
      *
-     * @throws ApiException
+     * @throws ApiException {@link ErrorCodes#PIN_VALIDATION} {@link ErrorMessages#INVALID_PIN}
+     * @throws ApiException {@link ErrorCodes#ACCOUNT_FUNDS} {@link ErrorMessages#ACCOUNT_FUNDS_INSUFFICIENT}
      */
     @RequestMapping(method = RequestMethod.GET, value = "/withdraw/{accountNum}/{pin}/{amount}")
     @Transactional(rollbackFor = ApiException.class)

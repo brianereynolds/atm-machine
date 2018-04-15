@@ -1,4 +1,4 @@
-package com.mybank.atm.entity;
+package com.mybank.atm.entity.db;
 
 import com.mybank.atm.entity.db.Account;
 import org.junit.Test;

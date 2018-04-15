@@ -1,6 +1,6 @@
 package com.mybank.atm.repo;
 
-import com.mybank.atm.entity.Account;
+import com.mybank.atm.entity.db.Account;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

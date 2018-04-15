@@ -1,6 +1,6 @@
 package com.mybank.atm.service;
 
-import com.mybank.atm.entity.Account;
+import com.mybank.atm.entity.db.Account;
 import com.mybank.atm.exception.ServiceException;
 import org.junit.Test;
 import org.junit.runner.RunWith;

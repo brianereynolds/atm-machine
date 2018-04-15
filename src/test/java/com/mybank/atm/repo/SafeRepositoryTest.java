@@ -1,7 +1,7 @@
 package com.mybank.atm.repo;
 
-import com.mybank.atm.entity.BankNote;
-import com.mybank.atm.entity.Safe;
+import com.mybank.atm.entity.db.BankNote;
+import com.mybank.atm.entity.db.Safe;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

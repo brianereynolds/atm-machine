@@ -1,5 +1,6 @@
 package com.mybank.atm.entity;
 
+import com.mybank.atm.entity.db.Account;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -31,11 +32,9 @@ public class AccountTest {
         BigDecimal testOverdraft = BigDecimal.valueOf(50.99);
         String testPin = "0014";
 
-        Account account = new Account();
-        account.setAccountNumber(testAccountNumber);
+        Account account = new Account(testAccountNumber, testPin);
         account.setBalance(testBalance);
         account.setOverdraft(testOverdraft);
-        account.setPin(testPin);
 
         assertEquals(MSG_BAD_ACCOUNT_NUMBER, account.getAccountNumber(), testAccountNumber);
         assertEquals(MSG_BAD_BALANCE, account.getBalance(), testBalance);
@@ -46,11 +45,9 @@ public class AccountTest {
 
     @Test
     public void testAccountNulls() {
-        Account account = new Account();
-        account.setAccountNumber(null);
+        Account account = new Account(null, null);
         account.setBalance(null);
         account.setOverdraft(null);
-        account.setPin(null);
 
         assertNull(MSG_BAD_ACCOUNT_NUMBER, account.getAccountNumber());
         assertNull(MSG_BAD_BALANCE, account.getBalance());

@@ -7,7 +7,5 @@ public class MessageConstants {
     }
 
     public static final String MSG_ACCOUNT_NOT_FOUND = "Account not found";
-
-    public static final String EXPECTED_WARNING = "this is an expected warning";
-
+    public static final String INVALID_PIN = "Invalid PIN provided";
 }

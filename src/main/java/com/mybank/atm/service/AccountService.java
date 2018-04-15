@@ -1,7 +1,8 @@
 package com.mybank.atm.service;
 
+import com.mybank.atm.config.ErrorCodes;
 import com.mybank.atm.config.MessageConstants;
-import com.mybank.atm.entity.Account;
+import com.mybank.atm.entity.db.Account;
 import com.mybank.atm.exception.ServiceException;
 import com.mybank.atm.repo.AccountRepository;
 import org.slf4j.Logger;
@@ -29,9 +30,9 @@ public class AccountService {
         logger.debug("getAccount: accountNum: {}", accountNum);
         List<Account> accounts = accountRepository.findByAccountNumber(accountNum);
         if(accounts.isEmpty()) {
-            throw new ServiceException(MessageConstants.MSG_ACCOUNT_NOT_FOUND);
+            throw new ServiceException(ErrorCodes.ACCOUNT_LOOKUP, MessageConstants.MSG_ACCOUNT_NOT_FOUND);
         } else if(accounts.size() > 1) {
-            logger.warn("validatePin: duplicate accounts found: {}", accounts.size());
+            logger.warn("getAccount: duplicate accounts found: {}", accounts.size());
         }
         return accounts.get(0);
     }

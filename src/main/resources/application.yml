@@ -11,8 +11,8 @@ spring:
 logging:
   level:
     ROOT: ERROR
-    org.springframework: WARN
-    com.acme: DEBUG
+    org.springframework: INFO
+    com.mybank: DEBUG
 
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

@@ -43,6 +43,11 @@ public class PinServiceTest {
     }
 
     @Test(expected = ServiceException.class)
+    public void testEmptyPin() throws ServiceException {
+        pinService.validatePin(33333L, "");
+    }
+
+    @Test(expected = ServiceException.class)
     public void testInvalidAccount() throws ServiceException {
         pinService.validatePin(invalidAccountNum, "0000");
     }

@@ -30,7 +30,7 @@ public class AccountService {
         logger.debug("getAccount: accountNum: {}", accountNum);
         List<Account> accounts = accountRepository.findByAccountNumber(accountNum);
         if(accounts.isEmpty()) {
-            throw new ServiceException(ErrorCodes.ACCOUNT_LOOKUP, MessageConstants.MSG_ACCOUNT_NOT_FOUND);
+            throw new ServiceException(ErrorCodes.ACCOUNT_LOOKUP, MessageConstants.ACCOUNT_NOT_FOUND);
         } else if(accounts.size() > 1) {
             logger.warn("getAccount: duplicate accounts found: {}", accounts.size());
         }

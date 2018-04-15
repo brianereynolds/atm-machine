@@ -49,7 +49,7 @@ public class AtmControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.code", is(ErrorCodes.ACCOUNT_LOOKUP)))
-                .andExpect(jsonPath("$.message", is(MessageConstants.MSG_ACCOUNT_NOT_FOUND)));
+                .andExpect(jsonPath("$.message", is(MessageConstants.ACCOUNT_NOT_FOUND)));
     }
 
     @Test

@@ -5,7 +5,7 @@ spring:
   main:
     banner-mode: "off"
   datasource:
-    url: "jdbc:h2:./database/atmdb;AUTO_SERVER=true"
+    url: "jdbc:h2:~/database/atmdb;AUTO_SERVER=true"
     driverClassName: "org.h2.Driver"
 
 logging:

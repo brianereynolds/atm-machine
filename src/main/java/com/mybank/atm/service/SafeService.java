@@ -62,7 +62,6 @@ public class SafeService {
         }
 
         Integer remainingAmount = amount;
-        BankNote[] allNotes = {BankNote.FIFTY, BankNote.TWENTY, BankNote.TEN, BankNote.FIVE};
         for(BankNote note : allNotes) {
             Integer bankNotesRequired = remainingAmount / note.getValue();
 

@@ -35,7 +35,9 @@ public class PinService {
             logger.error("validatePin: Empty PIN");
             throw new ServiceException(ErrorCodes.INVALID_PIN, ErrorMessages.INVALID_PIN);
         }
-        logger.debug("validatePin: accountNum: {}, pin: {}", accountNum, Utils.maskString(pin));
+        if(logger.isDebugEnabled()) {
+            logger.debug("validatePin: accountNum: {}, pin: {}", accountNum, Utils.maskString(pin));
+        }
         Account account = accountService.getAccount(accountNum);
         return account.getPin().equals(pin);
     }

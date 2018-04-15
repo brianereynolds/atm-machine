@@ -25,16 +25,16 @@ public class SafeRepositoryTest {
     @Test
     public void testGetNotes(){
         Safe safeFifty = safeRepository.getByBankNote(BankNote.FIFTY);
-        assertEquals(MSG_INVALID_50_NOTES, safeFifty.getCount(), 20);
+        assertEquals(MSG_INVALID_50_NOTES, 20, safeFifty.getCount());
 
         Safe safeTwenty = safeRepository.getByBankNote(BankNote.TWENTY);
-        assertEquals(MSG_INVALID_20_NOTES, safeTwenty.getCount(), 30);
+        assertEquals(MSG_INVALID_20_NOTES, 30, safeTwenty.getCount());
 
         Safe safeTenner = safeRepository.getByBankNote(BankNote.TWENTY);
-        assertEquals(MSG_INVALID_10_NOTES, safeTenner.getCount(), 30);
+        assertEquals(MSG_INVALID_10_NOTES, 30, safeTenner.getCount());
 
         Safe safeFiver = safeRepository.getByBankNote(BankNote.FIVE);
-        assertEquals(MSG_INVALID_5_NOTES, safeFiver.getCount(), 20);
+        assertEquals(MSG_INVALID_5_NOTES, 20, safeFiver.getCount());
     }
 
 

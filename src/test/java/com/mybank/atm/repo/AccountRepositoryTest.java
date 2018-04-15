@@ -37,7 +37,7 @@ public class AccountRepositoryTest {
         accountRepository.save(newAccount);
 
         List<Account> accounts = accountRepository.findByAccountNumber(testAccountNumber);
-        assertEquals("Incorrect number of accounts returned", accounts.size(), 1);
+        assertEquals("Incorrect number of accounts returned", 1, accounts.size());
 
         Account account = accounts.get(0);
         assertEquals("Account number incorrect", account.getAccountNumber(), testAccountNumber);
@@ -56,7 +56,7 @@ public class AccountRepositoryTest {
         BigDecimal testOverdraft = BigDecimal.valueOf(199.99);
 
         List<Account> accounts = accountRepository.findByAccountNumber(testAccountNumber);
-        assertEquals("Incorrect number of accounts returned", accounts.size(), 1);
+        assertEquals("Incorrect number of accounts returned", 1, accounts.size());
 
         Account account = accounts.get(0);
         assertEquals("Account number incorrect", account.getAccountNumber(), testAccountNumber);

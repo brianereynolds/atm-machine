@@ -2,6 +2,11 @@ package com.mybank.atm.entity.db;
 
 import javax.persistence.*;
 
+/**
+ * Entity to represent the Safe containing the bank notes
+ *
+ * @author brian.e.reynolds@outlook.com
+ */
 @Entity
 public class Safe {
 

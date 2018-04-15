@@ -1,5 +1,10 @@
 package com.mybank.atm.exception;
 
+/**
+ * General exception container.
+ *
+ * @author brian.e.reynolds@outlook.com
+ */
 public class ServiceException extends Exception {
     private final String code;
     private final String message;

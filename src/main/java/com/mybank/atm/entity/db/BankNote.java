@@ -1,5 +1,10 @@
 package com.mybank.atm.entity.db;
 
+/**
+ * Entity to represent a Bank Note
+ *
+ * @author brian.e.reynolds@outlook.com
+ */
 public enum BankNote {
 
     FIFTY(50), TWENTY(20), TEN(10), FIVE(5);

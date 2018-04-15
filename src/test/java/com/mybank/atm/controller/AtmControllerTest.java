@@ -2,7 +2,7 @@ package com.mybank.atm.controller;
 
 import com.mybank.atm.AtmApplication;
 import com.mybank.atm.config.ErrorCodes;
-import com.mybank.atm.config.MessageConstants;
+import com.mybank.atm.config.ErrorMessages;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +49,7 @@ public class AtmControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.code", is(ErrorCodes.ACCOUNT_LOOKUP)))
-                .andExpect(jsonPath("$.message", is(MessageConstants.ACCOUNT_NOT_FOUND)));
+                .andExpect(jsonPath("$.message", is(ErrorMessages.ACCOUNT_NOT_FOUND)));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class AtmControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.code", is(ErrorCodes.PIN_VALIDATION)))
-                .andExpect(jsonPath("$.message", is(MessageConstants.INVALID_PIN)));
+                .andExpect(jsonPath("$.message", is(ErrorMessages.INVALID_PIN)));
     }
 
     private String getUrl(Long accountNum, String pin) {

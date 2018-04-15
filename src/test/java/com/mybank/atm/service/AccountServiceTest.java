@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 
 import static com.mybank.atm.config.TestMessageConstants.*;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -55,5 +56,27 @@ public class AccountServiceTest {
     @Test(expected = ServiceException.class)
     public void testInvalidAccount() throws ServiceException {
         accountService.getAccount(invalidAccountNum);
+    }
+
+    @Test
+    public void testWithdrawFunds() throws ServiceException {
+        final Long accountNum = 998877660L;
+        final BigDecimal startingBalance = BigDecimal.valueOf(484.55);
+        final BigDecimal withDrawAmount = BigDecimal.valueOf(19.99);
+        accountService.withdrawFunds(accountNum, withDrawAmount);
+
+        Account account = accountService.getAccount(accountNum);
+        assertEquals("Balance is not correct", startingBalance.subtract(withDrawAmount), account.getBalance());
+    }
+
+    @Test
+    public void testWithdrawFundsOverdraft() throws ServiceException {
+        final Long accountNum = 494911101L;
+        final BigDecimal withDrawAmount = BigDecimal.valueOf(200);
+        accountService.withdrawFunds(accountNum, withDrawAmount);
+
+        Account account = accountService.getAccount(accountNum);
+        assertEquals("Balance is not correct", BigDecimal.ZERO, account.getBalance());
+        assertTrue("Overdraft is not correct", BigDecimal.valueOf(300L).compareTo(account.getOverdraft()) == 0);
     }
 }

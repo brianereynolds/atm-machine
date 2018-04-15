@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.HashMap;
@@ -64,5 +65,15 @@ public class SafeServiceTest {
     @Test(expected = ServiceException.class)
     public void calculateNotesInvalidTest2() throws ServiceException {
         safeService.calculateNotes(40000000);
+    }
+
+    @Test
+    public void testWithdrawCash() throws ServiceException {
+        Map<BankNote, Integer> map = new HashMap<>();
+        map.put(BankNote.FIFTY, 1);
+        map.put(BankNote.TWENTY, 2);
+        safeService.withdrawCash(map);
+        assertEquals("Incorrect 50 count", 19, safeService.safeRepository.getByBankNote(BankNote.FIFTY).getCount());
+        assertEquals("Incorrect 20 count", 28, safeService.safeRepository.getByBankNote(BankNote.TWENTY).getCount());
     }
 }

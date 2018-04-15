@@ -11,8 +11,8 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class SafeTest {
 
-    private final static String MSG_NOTE_ERROR = "Note does not match";
-    private final static String MSG_COUNT_ERROR = "Count does not match";
+    private static final String MSG_NOTE_ERROR = "Note does not match";
+    private static final String MSG_COUNT_ERROR = "Count does not match";
 
     @Test
     public void testSafeFifty() {

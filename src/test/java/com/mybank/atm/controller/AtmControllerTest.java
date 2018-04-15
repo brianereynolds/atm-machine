@@ -29,7 +29,7 @@ public class AtmControllerTest {
     public void testGetBalance() throws Exception {
         Long testAccountNum = 100100013L;
         String testPin = "9923";
-        String url = String.format("/balance/%s/%s", testAccountNum, testPin);
+        String url = getUrl(testAccountNum, testPin);
 
         this.mockMvc.perform(get(url))
                 .andExpect(status().isOk())
@@ -43,7 +43,7 @@ public class AtmControllerTest {
     public void testInvalidAccountNum() throws Exception {
         Long testAccountNum = 11L;
         String testPin = "0000";
-        String url = String.format("/balance/%s/%s", testAccountNum, testPin);
+        String url = getUrl(testAccountNum, testPin);
 
         this.mockMvc.perform(get(url))
                 .andExpect(status().isOk())
@@ -56,12 +56,17 @@ public class AtmControllerTest {
     public void testIncorrectPin() throws Exception {
         Long testAccountNum = 443457424L;
         String testPin = "0000";
-        String url = String.format("/balance/%s/%s", testAccountNum, testPin);
+        String url = getUrl(testAccountNum, testPin);
 
         this.mockMvc.perform(get(url))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.code", is(ErrorCodes.PIN_VALIDATION)))
                 .andExpect(jsonPath("$.message", is(MessageConstants.INVALID_PIN)));
+    }
+
+    private String getUrl(Long accountNum, String pin) {
+        return String.format("/balance/%s/%s", accountNum, pin);
+
     }
 }

@@ -35,7 +35,7 @@ public class AtmController {
         AccountResource accountResource = new AccountResource();
 
         try {
-            if(pinService.validatePin(accountNum, pin) == false) {
+            if(!pinService.validatePin(accountNum, pin)) {
                 throw new ServiceException(ErrorCodes.PIN_VALIDATION, MessageConstants.INVALID_PIN);
             }
 

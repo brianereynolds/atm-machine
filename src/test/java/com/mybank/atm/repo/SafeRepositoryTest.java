@@ -14,10 +14,10 @@ import static org.junit.Assert.assertEquals;
 @DataJpaTest
 public class SafeRepositoryTest {
 
-    private final String MSG_INVALID_50_NOTES = "Invalid number of 50 notes";
-    private final String MSG_INVALID_20_NOTES = "Invalid number of 20 notes";
-    private final String MSG_INVALID_10_NOTES = "Invalid number of 10 notes";
-    private final String MSG_INVALID_5_NOTES = "Invalid number of 5 notes";
+    private static final String MSG_INVALID_50_NOTES = "Invalid number of 50 notes";
+    private static final String MSG_INVALID_20_NOTES = "Invalid number of 20 notes";
+    private static final String MSG_INVALID_10_NOTES = "Invalid number of 10 notes";
+    private static final String MSG_INVALID_5_NOTES = "Invalid number of 5 notes";
 
     @Autowired
     private SafeRepository safeRepository;

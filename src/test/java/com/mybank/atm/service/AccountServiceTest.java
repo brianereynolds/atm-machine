@@ -30,7 +30,7 @@ public class AccountServiceTest {
     private AccountService accountService;
 
     // from src/test/resources/data.sql
-    private Long testAccountNum = new Long(987654321);
+    private Long testAccountNum = 987654321L;
     private String testPin = "4321";
     private BigDecimal testBalance = BigDecimal.valueOf(1230.00);
     private BigDecimal testOverdraft = BigDecimal.valueOf(150.00);

@@ -1,8 +1,8 @@
 package com.mybank.atm.exception;
 
 public class ApiException extends Exception {
-    private String code;
-    private String message;
+    private final String code;
+    private final String message;
 
     public ApiException(ServiceException se) {
         this.code = se.getCode();

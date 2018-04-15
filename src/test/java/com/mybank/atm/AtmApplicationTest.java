@@ -1,8 +1,6 @@
 package com.mybank.atm;
 
 import com.mybank.atm.controller.AtmController;
-import com.mybank.atm.service.AccountService;
-import com.mybank.atm.service.PinService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,7 @@ public class AtmApplicationTest {
     private AtmController controller;
 
     @Test
-    public void contextLoads() throws Exception {
+    public void contextLoads() {
         assertNotNull(controller);
     }
 }

@@ -1,7 +1,6 @@
 package com.mybank.atm.service;
 
 import com.mybank.atm.exception.ServiceException;
-import com.mybank.atm.repo.AccountRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class PinServiceTest {
     private Long invalidAccountNum = 99999L;
 
     @Test
-    public void testValidPin() throws Exception{
+    public void testValidPin() throws ServiceException{
         assertTrue("Pin validation failed", pinService.validatePin(testAccountNum, "4321"));
     }
 

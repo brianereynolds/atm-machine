@@ -21,9 +21,9 @@ public class CashMapResourceTest {
         map.put(BankNote.TEN, 3);
         map.put(BankNote.FIVE, 4);
         CashMapResource cashMapResource = new CashMapResource(map);
-        assertEquals("Incorrect value", cashMapResource.getFifty(), 1);
-        assertEquals("Incorrect value", cashMapResource.getTwenty(), 2);
-        assertEquals("Incorrect value", cashMapResource.getTen(), 3);
-        assertEquals("Incorrect value", cashMapResource.getFive(), 4);
+        assertEquals("Incorrect value", 1, cashMapResource.getFifty());
+        assertEquals("Incorrect value", 2, cashMapResource.getTwenty());
+        assertEquals("Incorrect value", 3, cashMapResource.getTen());
+        assertEquals("Incorrect value", 4, cashMapResource.getFive());
     }
 }

@@ -6,4 +6,9 @@ public class ServiceException extends Exception {
     public ServiceException(String message) {
         this.message = message;
     }
+
+    @Override
+    public String getMessage() {
+        return this.message;
+    }
 }

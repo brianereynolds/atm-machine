@@ -21,7 +21,7 @@ public class PinService {
     public boolean validatePin(Long accountNum, String pin) throws ServiceException {
         logger.debug("validatePin: accountNum: {}", accountNum);
         List<Account> accounts = accountRepository.findByAccountNumber(accountNum);
-        if(accounts.size() == 0) {
+        if(accounts.isEmpty()) {
             throw new ServiceException(MessageConstants.MSG_ACCOUNT_NOT_FOUND);
         } else if(accounts.size() > 1) {
             logger.warn("validatePin: duplicate accounts found: {}", accounts.size());

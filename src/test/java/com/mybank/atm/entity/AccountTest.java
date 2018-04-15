@@ -6,16 +6,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
 
+import static com.mybank.atm.config.TestMessageConstants.*;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class AccountTest {
-
-    private static final String MSG_BAD_ACCOUNT_NUMBER = "Account number incorrect";
-    private static final String MSG_BAD_BALANCE = "Balance incorrect";
-    private static final String MSG_BAD_OVERDRAFT = "Overdraft incorrect";
-    private static final String MSG_BAD_PIN = "PIN incorrect";
-    private static final String MSG_BAD_ID = "ID incorrect";
 
     @Test
     public void testAccount() {

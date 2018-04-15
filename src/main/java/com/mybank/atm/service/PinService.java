@@ -16,16 +16,11 @@ public class PinService {
     private Logger logger = LoggerFactory.getLogger(PinService.class);
 
     @Autowired
-    AccountRepository accountRepository;
+    AccountService accountService;
 
     public boolean validatePin(Long accountNum, String pin) throws ServiceException {
-        logger.debug("validatePin: accountNum: {}", accountNum);
-        List<Account> accounts = accountRepository.findByAccountNumber(accountNum);
-        if(accounts.isEmpty()) {
-            throw new ServiceException(MessageConstants.MSG_ACCOUNT_NOT_FOUND);
-        } else if(accounts.size() > 1) {
-            logger.warn("validatePin: duplicate accounts found: {}", accounts.size());
-        }
-        return accounts.get(0).getPin().equals(pin);
+        logger.debug("validatePin: accountNum: {}, pin: {}", accountNum, pin.replaceAll(".*", "*"));
+        Account account = accountService.getAccount(accountNum);
+        return account.getPin().equals(pin);
     }
 }

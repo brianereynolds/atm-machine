@@ -66,7 +66,7 @@ public class AccountService {
      * @throws ServiceException {@link ErrorCodes#ACCOUNT_LOOKUP} {@link ErrorMessages#ACCOUNT_NOT_FOUND}
      */
     public void withdrawFunds(Long accountNum, BigDecimal amount) throws ServiceException {
-        logger.debug("withdrawFunds: accountNum: {}", amount);
+        logger.debug("withdrawFunds: accountNum: {}, amount: {}", accountNum, amount);
 
         Account account = getAccount(accountNum);
 

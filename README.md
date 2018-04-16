@@ -72,5 +72,3 @@ Given more time I would create some cucumber-based "true" integration tests.
 I have used SonarLint (integration in Intellij) and
 [SonarCloud](https://sonarcloud.io/dashboard?id=brianereynolds%3Aatm-machine),
 via [Travis](https://travis-ci.org/brianereynolds/atm-machine) CI server. Travis will also build a docker image and push to [hub.docker.com](https://hub.docker.com).
-
-### Other Considerations

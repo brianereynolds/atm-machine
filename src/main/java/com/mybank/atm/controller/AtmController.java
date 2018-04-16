@@ -166,4 +166,13 @@ public class AtmController {
         logger.trace("handleApiException: stacktrace: {}", ExceptionUtils.getStackTrace(e));
         return new ErrorResource(e.getCode(), e.getMessage());
     }
+
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Throwable.class)
+    public ErrorResource handleGeneralException(Throwable e) {
+        logger.error("handleGeneralException: message: {}", e.getMessage());
+        logger.error("handleGeneralException: stacktrace: {}", ExceptionUtils.getStackTrace(e));
+        return new ErrorResource(ErrorCodes.SYSTEM_ERROR, e.getMessage());
+
+    }
 }

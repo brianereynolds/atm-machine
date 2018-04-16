@@ -36,11 +36,12 @@ The best place to look for interface specification is the Swagger file. At a hig
 If an error is enountered, a JSON response and HTTP 400 is returned. The JSON message itself has the most detailed information.
 The following table illustrates the error code mapping.
 
-|Code   |Message                            | Example                |
+|Code   | Message                           | Example                |
 |-------|-----------------------------------| ---------------------- |
 |Pnnnn  | Related to PIN service            | Invalid PIN entered    |
 |Annnn  | Related to Account service        | Not enough funds       |
 |Snnnn  | Related to ATM service            | Insufficient ATM funds |
+|Ynnnn  | System error, contact support     | System error           |
 
 ### Database
 [H2](https://en.wikipedia.org/wiki/H2_(DBMS)) has been used as the backend database. This is sufficient

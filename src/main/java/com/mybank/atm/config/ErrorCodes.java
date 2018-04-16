@@ -16,4 +16,5 @@ public class ErrorCodes {
     public static final String ACCOUNT_LOOKUP = "A1001";
     public static final String ACCOUNT_FUNDS = "A1002";
     public static final String ATM_FUNDS_ERROR = "S1001";
+    public static final String SYSTEM_ERROR = "Y1001";
 }

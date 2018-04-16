@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -177,10 +176,37 @@ public class AtmControllerTest {
 
         this.mockMvc.perform(get(url))
                 .andExpect(status().isBadRequest())
-                .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.code", is("S1001")))
                 .andExpect(jsonPath("$.message", is("Insufficient ATM notes to complete withdrawal")));
+    }
+
+    @Test
+    public void checkEmptyAccountNum() throws Exception {
+        mockMvc.perform(get("/balance/ /1111))"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.code").value("A1001"))
+                .andExpect(jsonPath("$.message").value("Account not found"));
+    }
+
+    @Test
+    public void checkInvalidAccountNum() throws Exception {
+        mockMvc.perform(get("/balance/INVALID/1111))"))
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.code").value("Y1001"))
+                .andExpect(jsonPath("$.message")
+                        .value("Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"INVALID\""));
+    }
+
+    @Test
+    public void checkEmptyPin() throws Exception {
+        mockMvc.perform(get("/balance/123456789/))"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.code").value("P1001"))
+                .andExpect(jsonPath("$.message").value("Invalid PIN provided"));
     }
 
     private String getBalanceUri(Long accountNum, String pin) {

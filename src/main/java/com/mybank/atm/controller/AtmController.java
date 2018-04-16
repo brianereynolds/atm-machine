@@ -51,7 +51,6 @@ public class AtmController {
 
     /**
      * Allows the user to request a balance check.
-     * <p>
      * <ul>
      * <li>The current balance and maximum withdrawal amount will be shown</li>
      * <li>The customer PIN and Account number must be valid</li>

@@ -103,6 +103,32 @@ public class AtmControllerTest {
     }
 
     @Test
+    public void testWithdrawFundsAccountLimit() throws Exception {
+        Long testAccountNum = 443457424L;
+        String testPin = "5623";
+        String url = getWithdrawUri(testAccountNum, testPin, "2000");
+
+        this.mockMvc.perform(get(url))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.code", is("A1002")))
+                .andExpect(jsonPath("$.message", is("Insufficient account balance")));
+    }
+
+    @Test
+    public void testWithdrawFundsATMLimit() throws Exception {
+        Long testAccountNum = 505039929L;
+        String testPin = "4852";
+        String url = getWithdrawUri(testAccountNum, testPin, "9000");
+
+        this.mockMvc.perform(get(url))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.code", is("S1001")))
+                .andExpect(jsonPath("$.message", is("Insufficient ATM funds")));
+    }
+
+    @Test
     public void testWithdrawFundsUntilBroke() throws Exception {
         Long testAccountNum = 494911101L;
         String testPin = "4425";

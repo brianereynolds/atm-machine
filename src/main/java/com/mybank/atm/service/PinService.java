@@ -26,16 +26,16 @@ public class PinService {
      * Validate the secret PIN
      *
      * @param accountNum The customer account number
-     * @param pin The customer secret PIN
+     * @param pin        The customer secret PIN
      * @return Valid PIN (true), Invalid PIN (false)
      * @throws ServiceException {@link ErrorCodes#INVALID_PIN} {@link ErrorMessages#INVALID_PIN}
      */
     public boolean validatePin(Long accountNum, String pin) throws ServiceException {
-        if(pin.isEmpty()) {
+        if (pin.isEmpty()) {
             logger.error("validatePin: Empty PIN");
             throw new ServiceException(ErrorCodes.INVALID_PIN, ErrorMessages.INVALID_PIN);
         }
-        if(logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled()) {
             logger.debug("validatePin: accountNum: {}, pin: {}", accountNum, Utils.maskString(pin));
         }
         Account account = accountService.getAccount(accountNum);

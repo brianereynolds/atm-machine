@@ -48,40 +48,39 @@ public class SafeService {
      *
      * @param amount The amount
      * @return A Map containing the BankNote and the minimum number needed to provide the amount requested.
-     *
      * @throws ServiceException {@link ErrorCodes#ATM_FUNDS_ERROR} {@link ErrorMessages#ATM_FUNDS_WITHDRAWAL_ERROR}
      * @throws ServiceException {@link ErrorCodes#ATM_FUNDS_ERROR} {@link ErrorMessages#ATM_FUNDS_AMOUNT_ERROR}
      */
     public Map<BankNote, Integer> calculateNotes(Integer amount) throws ServiceException {
         Map<BankNote, Integer> cashMap = new EnumMap<>(BankNote.class);
 
-        if(amount > getTotal()) {
+        if (amount > getTotal()) {
             throw new ServiceException(ErrorCodes.ATM_FUNDS_ERROR, ErrorMessages.ATM_FUNDS_WITHDRAWAL_ERROR);
-        } else if((amount % 5) > 0) {
+        } else if ((amount % 5) > 0) {
             throw new ServiceException(ErrorCodes.ATM_FUNDS_ERROR, ErrorMessages.ATM_FUNDS_AMOUNT_ERROR);
         }
 
         Integer remainingAmount = amount;
-        for(BankNote note : allNotes) {
+        for (BankNote note : allNotes) {
             Integer bankNotesRequired = remainingAmount / note.getValue();
 
             Integer bankNotesInSafe = safeRepository.getByBankNote(note).getCount();
-            if(bankNotesInSafe < bankNotesRequired) {
+            if (bankNotesInSafe < bankNotesRequired) {
                 // Only this amount in the safe
                 bankNotesRequired = bankNotesInSafe;
             }
 
-            if(bankNotesRequired > 0) {
+            if (bankNotesRequired > 0) {
                 remainingAmount = remainingAmount - (bankNotesRequired * note.getValue());
                 cashMap.put(note, bankNotesRequired);
-                if(remainingAmount == 0) {
+                if (remainingAmount == 0) {
                     // All notes counted
                     break;
                 }
             }
         }
 
-        if(remainingAmount > 0) {
+        if (remainingAmount > 0) {
             throw new ServiceException(ErrorCodes.ATM_FUNDS_ERROR, ErrorMessages.ATM_NOTES_WITHDRAWAL_ERROR);
         }
 
@@ -92,18 +91,17 @@ public class SafeService {
      * Withdraw cash from the safe
      *
      * @param cashMap A map of notes and associated amounts that have to be withdrawn.
-     *
      * @throws ServiceException {@link ErrorCodes#ATM_FUNDS_ERROR} {@link ErrorMessages#ATM_FUNDS_WITHDRAWAL_ERROR}
      */
     public void withdrawCash(Map<BankNote, Integer> cashMap) throws ServiceException {
         logger.debug("withdrawCash: cashMap: {} ", cashMap);
 
-        for(BankNote note : allNotes) {
+        for (BankNote note : allNotes) {
             Safe safeCash = safeRepository.getByBankNote(note);
-            if(cashMap.get(note) != null) {
+            if (cashMap.get(note) != null) {
                 safeCash.setCount(safeCash.getCount() - cashMap.get(note));
             }
-            if(safeCash.getCount() < 0) {
+            if (safeCash.getCount() < 0) {
                 throw new ServiceException(ErrorCodes.ATM_FUNDS_ERROR, ErrorMessages.ATM_FUNDS_WITHDRAWAL_ERROR);
             }
             safeRepository.save(safeCash);
@@ -112,6 +110,7 @@ public class SafeService {
 
     /**
      * This setter method should be used only by unit tests.
+     *
      * @param safeRepository Mocked SafeRepository
      */
     protected void setSafeRepository(SafeRepository safeRepository) {

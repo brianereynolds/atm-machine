@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class ExceptionTest {
 
     @Test
-    public void testServiceException(){
+    public void testServiceException() {
         final String code = "T111";
         final String message = "A service exception Message";
 
@@ -20,7 +20,7 @@ public class ExceptionTest {
     }
 
     @Test
-    public void testApiException(){
+    public void testApiException() {
         final String code = "T112";
         final String message = "An Api exception Message";
 

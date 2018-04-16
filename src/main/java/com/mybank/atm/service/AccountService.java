@@ -48,9 +48,9 @@ public class AccountService {
     public Account getAccount(Long accountNum) throws ServiceException {
         logger.debug("getAccount: accountNum: {}", accountNum);
         List<Account> accounts = accountRepository.findByAccountNumber(accountNum);
-        if(accounts.isEmpty()) {
+        if (accounts.isEmpty()) {
             throw new ServiceException(ErrorCodes.ACCOUNT_LOOKUP, ErrorMessages.ACCOUNT_NOT_FOUND);
-        } else if(accounts.size() > 1) {
+        } else if (accounts.size() > 1) {
             logger.warn("getAccount: duplicate accounts found: {}", accounts.size());
         }
         return accounts.get(0);
@@ -60,8 +60,7 @@ public class AccountService {
      * Withdraw funds from this account
      *
      * @param accountNum The customer account number
-     * @param amount The amount to withdraw
-     *
+     * @param amount     The amount to withdraw
      * @throws ServiceException {@link ErrorCodes#ACCOUNT_FUNDS} {@link ErrorMessages#ACCOUNT_FUNDS_INSUFFICIENT}
      * @throws ServiceException {@link ErrorCodes#ACCOUNT_LOOKUP} {@link ErrorMessages#ACCOUNT_NOT_FOUND}
      */
@@ -70,11 +69,11 @@ public class AccountService {
 
         Account account = getAccount(accountNum);
 
-        if(account.getBalance().add(account.getOverdraft()).compareTo(amount) < 0){
+        if (account.getBalance().add(account.getOverdraft()).compareTo(amount) < 0) {
             throw new ServiceException(ErrorCodes.ACCOUNT_FUNDS, ErrorMessages.ACCOUNT_FUNDS_INSUFFICIENT);
         }
 
-        if(account.getBalance().subtract(amount).compareTo(BigDecimal.ZERO) < 0){
+        if (account.getBalance().subtract(amount).compareTo(BigDecimal.ZERO) < 0) {
             // Into the overdraft
             BigDecimal creditAmount = amount.subtract(account.getBalance());
             account.setBalance(BigDecimal.ZERO);

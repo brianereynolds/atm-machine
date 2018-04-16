@@ -51,23 +51,22 @@ public class AtmController {
 
     /**
      * Allows the user to request a balance check.
-     *
+     * <p>
      * <ul>
-     *     <li>The current balance and maximum withdrawal amount will be shown</li>
-     *     <li>The customer PIN and Account number must be valid</li>
+     * <li>The current balance and maximum withdrawal amount will be shown</li>
+     * <li>The customer PIN and Account number must be valid</li>
      * </ul>
      *
      * @param accountNum The customer account number
-     * @param pin The customer secret PIN
+     * @param pin        The customer secret PIN
      * @return Balance information; the current balance, and maximum withdrawal amount
-     *
      * @throws ApiException {@link ErrorCodes#PIN_VALIDATION} {@link ErrorMessages#INVALID_PIN}
      */
     @RequestMapping(method = RequestMethod.GET, value = "/balance/{accountNum}/{pin}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "Get Balance and Max Withdrawal information")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success", response =  AccountResource.class),
+            @ApiResponse(code = 200, message = "Success", response = AccountResource.class),
             @ApiResponse(code = 400, message = "Error", response = ErrorResource.class)
     })
     @ResponseBody
@@ -76,7 +75,7 @@ public class AtmController {
         AccountResource accountResource = new AccountResource();
 
         try {
-            if(!pinService.validatePin(accountNum, pin)) {
+            if (!pinService.validatePin(accountNum, pin)) {
                 throw new ServiceException(ErrorCodes.PIN_VALIDATION, ErrorMessages.INVALID_PIN);
             }
 
@@ -88,7 +87,7 @@ public class AtmController {
             // cash that is left in the machine; but this would be a security lapse
 
             accountResource.setMaxWithdrawal(account.getBalance().add(account.getOverdraft()));
-        } catch(ServiceException se) {
+        } catch (ServiceException se) {
             logger.error("getBalance failed for {}", accountNum);
             throw new ApiException(se);
         }
@@ -99,16 +98,16 @@ public class AtmController {
     /**
      * Withdraw funds from the ATM
      * <ul>
-     *     <li>The ATM has denominations of 50, 20, 10 and 5</li>
-     *     <li>The customer PIN and Account number must be valid</li>
-     *     <li>The ATM will dispense the minimum amount of notes</li>
-     *     <li>The amount dispensed is limited by either the customer balance or physical number of notes</li>
+     * <li>The ATM has denominations of 50, 20, 10 and 5</li>
+     * <li>The customer PIN and Account number must be valid</li>
+     * <li>The ATM will dispense the minimum amount of notes</li>
+     * <li>The amount dispensed is limited by either the customer balance or physical number of notes</li>
      * </ul>
-     * @param accountNum CThe customer account number
-     * @param pin The customer secret PIN
-     * @param amount The amount requested
-     * @return Withdrawal information, the amount withdrawn, the notes withdrawn, and updated account balance information.
      *
+     * @param accountNum CThe customer account number
+     * @param pin        The customer secret PIN
+     * @param amount     The amount requested
+     * @return Withdrawal information, the amount withdrawn, the notes withdrawn, and updated account balance information.
      * @throws ApiException {@link ErrorCodes#PIN_VALIDATION} {@link ErrorMessages#INVALID_PIN}
      * @throws ApiException {@link ErrorCodes#ACCOUNT_FUNDS} {@link ErrorMessages#ACCOUNT_FUNDS_INSUFFICIENT}
      */
@@ -116,7 +115,7 @@ public class AtmController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "Withdraw funds from the ATM")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success", response =  AccountResource.class),
+            @ApiResponse(code = 200, message = "Success", response = AccountResource.class),
             @ApiResponse(code = 400, message = "Error", response = ErrorResource.class)
     })
     @Transactional(rollbackFor = ApiException.class)
@@ -124,15 +123,15 @@ public class AtmController {
             throws ApiException {
         WithdrawalResource withdrawalResource = new WithdrawalResource();
 
-        try{
-            if(!pinService.validatePin(accountNum, pin)) {
+        try {
+            if (!pinService.validatePin(accountNum, pin)) {
                 throw new ServiceException(ErrorCodes.PIN_VALIDATION, ErrorMessages.INVALID_PIN);
             }
 
             // Check that the customer has enough credit in their a/c
             Account account = accountService.getAccount(accountNum);
             BigDecimal totalFunds = account.getBalance().add(account.getOverdraft());
-            if(totalFunds.compareTo(BigDecimal.valueOf(amount)) < 0) {
+            if (totalFunds.compareTo(BigDecimal.valueOf(amount)) < 0) {
                 throw new ServiceException(ErrorCodes.ACCOUNT_FUNDS, ErrorMessages.ACCOUNT_FUNDS_INSUFFICIENT);
             }
 
@@ -149,12 +148,12 @@ public class AtmController {
                     updatedAccount.getBalance().add(updatedAccount.getOverdraft())
             ));
 
-        } catch(ServiceException se) {
+        } catch (ServiceException se) {
             logger.error("withdrawal failed for {}", accountNum);
             throw new ApiException(se);
         }
 
-         withdrawalResource.setAmount(BigDecimal.valueOf(amount));
+        withdrawalResource.setAmount(BigDecimal.valueOf(amount));
 
         return withdrawalResource;
     }

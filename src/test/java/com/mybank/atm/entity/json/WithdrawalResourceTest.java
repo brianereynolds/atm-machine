@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,6 +26,6 @@ public class WithdrawalResourceTest {
         assertEquals("Account resource balance incorrect", BigDecimal.valueOf(200L), withdrawalResource.getAccountResource().getBalance());
         assertEquals("Account resource withdrawal incorrect", BigDecimal.valueOf(500L), withdrawalResource.getAccountResource().getMaxWithdrawal());
         assertEquals("Balance incorrect", BigDecimal.valueOf(100L), withdrawalResource.getAmount());
-        assertEquals("Map incorrect", (long)map.get(BankNote.FIFTY), withdrawalResource.getCashMap().getFifty());
+        assertEquals("Map incorrect", (long) map.get(BankNote.FIFTY), withdrawalResource.getCashMap().getFifty());
     }
 }

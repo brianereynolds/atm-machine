@@ -34,7 +34,7 @@ public class SafeServiceMockTest {
     private Safe fiveSafe;
 
     @Before
-    public void initMocks(){
+    public void initMocks() {
         MockitoAnnotations.initMocks(this);
         SafeRepository safeRepository = mock(SafeRepository.class);
         safeService.setSafeRepository(safeRepository);
@@ -46,7 +46,7 @@ public class SafeServiceMockTest {
     }
 
     @Test
-    public void dispenseTest_75() throws ServiceException{
+    public void dispenseTest_75() throws ServiceException {
         // Put some notes in the safe
         when(fiftySafe.getCount()).thenReturn(2);
         when(twentySafe.getCount()).thenReturn(1);
@@ -59,7 +59,7 @@ public class SafeServiceMockTest {
     }
 
     @Test
-    public void dispenseTest_45() throws ServiceException{
+    public void dispenseTest_45() throws ServiceException {
         // Put some notes in the safe
         when(fiveSafe.getCount()).thenReturn(10);
         Map<BankNote, Integer> expected = new HashMap<>();
@@ -68,7 +68,7 @@ public class SafeServiceMockTest {
     }
 
     @Test
-    public void dispenseTest_20() throws ServiceException{
+    public void dispenseTest_20() throws ServiceException {
         // Put some notes in the safe
         when(tenSafe.getCount()).thenReturn(1);
         when(fiveSafe.getCount()).thenReturn(20);
@@ -79,7 +79,7 @@ public class SafeServiceMockTest {
     }
 
     @Test(expected = ServiceException.class)
-    public void dispenseTest_insufficient() throws ServiceException{
+    public void dispenseTest_insufficient() throws ServiceException {
         when(fiftySafe.getCount()).thenReturn(2);
         safeService.calculateNotes(105);
     }

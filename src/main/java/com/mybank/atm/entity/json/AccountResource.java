@@ -1,7 +1,6 @@
 package com.mybank.atm.entity.json;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.mybank.atm.entity.db.Account;
 
 import java.math.BigDecimal;
 
@@ -16,7 +15,8 @@ public class AccountResource {
     private BigDecimal balance;
     private BigDecimal maxWithdrawal;
 
-    public AccountResource() {}
+    public AccountResource() {
+    }
 
     public AccountResource(BigDecimal balance, BigDecimal maxWithdrawal) {
         this.balance = balance;

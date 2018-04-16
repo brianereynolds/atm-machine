@@ -23,7 +23,7 @@ public class SafeRepositoryTest {
     private SafeRepository safeRepository;
 
     @Test
-    public void testGetNotes(){
+    public void testGetNotes() {
         Safe safeFifty = safeRepository.getByBankNote(BankNote.FIFTY);
         assertEquals(MSG_INVALID_50_NOTES, 20, safeFifty.getCount());
 

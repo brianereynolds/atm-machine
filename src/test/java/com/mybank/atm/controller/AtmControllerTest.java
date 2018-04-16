@@ -104,7 +104,7 @@ public class AtmControllerTest {
 
     @Test
     public void testWithdrawFundsUntilBroke() throws Exception {
-        Long testAccountNum = 494911101L ;
+        Long testAccountNum = 494911101L;
         String testPin = "4425";
         String url = getWithdrawUri(testAccountNum, testPin, "95");
 
@@ -156,12 +156,12 @@ public class AtmControllerTest {
 
     @Test
     public void testWithdrawFundsEmptyATM() throws Exception {
-        Long testAccountNum = 494911101L ;
+        Long testAccountNum = 494911101L;
         String testPin = "4425";
         String url = getWithdrawUri(testAccountNum, testPin, "5");
 
         // There are 20 fivers in the ATM. Take them all out
-        for(int i=0; i<20; i++) {
+        for (int i = 0; i < 20; i++) {
             this.mockMvc.perform(get(url))
                     .andExpect(status().isOk())
                     .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))

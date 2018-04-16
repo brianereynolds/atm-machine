@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.HashMap;
@@ -35,7 +34,7 @@ public class SafeServiceTest {
     @Test
     public void getTotalTest() {
         int total = 2000;
-        assertEquals("Invalid Total", (int)safeService.getTotal(), total);
+        assertEquals("Invalid Total", (int) safeService.getTotal(), total);
     }
 
     @Test

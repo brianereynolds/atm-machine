@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import java.math.BigDecimal;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -17,7 +16,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 public class Account {
     @Id
-    @GeneratedValue(strategy =  IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private long id;
 
     @Column(nullable = false)
@@ -32,7 +31,8 @@ public class Account {
     @Column(nullable = false)
     private BigDecimal overdraft;
 
-    protected Account() {}
+    protected Account() {
+    }
 
     public Account(Long accountNumber, String pin) {
         this.accountNumber = accountNumber;

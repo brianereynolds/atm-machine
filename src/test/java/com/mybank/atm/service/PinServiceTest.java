@@ -33,7 +33,7 @@ public class PinServiceTest {
     private Long invalidAccountNum = 99999L;
 
     @Test
-    public void testValidPin() throws ServiceException{
+    public void testValidPin() throws ServiceException {
         assertTrue("Pin validation failed", pinService.validatePin(testAccountNum, "4321"));
     }
 

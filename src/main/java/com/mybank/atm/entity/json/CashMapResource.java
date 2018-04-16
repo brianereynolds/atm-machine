@@ -18,15 +18,15 @@ public class CashMapResource {
     private int ten;
     private int five;
 
-    public CashMapResource(Map<BankNote, Integer> map){
-        for(Map.Entry<BankNote, Integer> entry: map.entrySet()) {
-            if(entry.getKey() == BankNote.FIFTY) {
+    public CashMapResource(Map<BankNote, Integer> map) {
+        for (Map.Entry<BankNote, Integer> entry : map.entrySet()) {
+            if (entry.getKey() == BankNote.FIFTY) {
                 fifty = entry.getValue();
-            } else if(entry.getKey() == BankNote.TWENTY) {
+            } else if (entry.getKey() == BankNote.TWENTY) {
                 twenty = entry.getValue();
-            } else if(entry.getKey() == BankNote.TEN) {
+            } else if (entry.getKey() == BankNote.TEN) {
                 ten = entry.getValue();
-            } else if(entry.getKey() == BankNote.FIVE) {
+            } else if (entry.getKey() == BankNote.FIVE) {
                 five = entry.getValue();
             }
         }

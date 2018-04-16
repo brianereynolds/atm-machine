@@ -47,7 +47,7 @@ public class AtmControllerTest {
         String url = getBalanceUri(testAccountNum, testPin);
 
         this.mockMvc.perform(get(url))
-                .andExpect(status().isOk())
+                .andExpect(status().isBadRequest())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.code", is(ErrorCodes.ACCOUNT_LOOKUP)))
                 .andExpect(jsonPath("$.message", is(ErrorMessages.ACCOUNT_NOT_FOUND)));
@@ -60,7 +60,7 @@ public class AtmControllerTest {
         String url = getBalanceUri(testAccountNum, testPin);
 
         this.mockMvc.perform(get(url))
-                .andExpect(status().isOk())
+                .andExpect(status().isBadRequest())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.code", is(ErrorCodes.PIN_VALIDATION)))
                 .andExpect(jsonPath("$.message", is(ErrorMessages.INVALID_PIN)));
@@ -148,7 +148,7 @@ public class AtmControllerTest {
         url = getWithdrawUri(testAccountNum, testPin, "75");
 
         this.mockMvc.perform(get(url))
-                .andExpect(status().isOk())
+                .andExpect(status().isBadRequest())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.code", is("A1002")))
                 .andExpect(jsonPath("$.message", is("Insufficient account balance")));

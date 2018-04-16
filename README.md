@@ -65,6 +65,7 @@ All are run via
 
 Given more time I would create some cucumber-based "true" integration tests.
 Test coverage is created using [jacoco](http://www.eclemma.org/jacoco/).
+Any manual tests have been run via the [Swagger HTML client](http://localhost:7000/swagger-ui.html).
 
 ### Continuous Quality/Integration/Deployment
 I have used SonarLint (integration in Intellij) and

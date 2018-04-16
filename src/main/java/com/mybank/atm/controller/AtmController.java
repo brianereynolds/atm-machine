@@ -13,6 +13,8 @@ import com.mybank.atm.exception.ServiceException;
 import com.mybank.atm.service.AccountService;
 import com.mybank.atm.service.PinService;
 import com.mybank.atm.service.SafeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +32,7 @@ import java.util.Map;
  * @author brian.e.reynolds@outlook.com
  */
 @RestController
+@Api("API to implement ATM functionality for getting current balance, and withdrawing cash")
 public class AtmController {
 
     private Logger logger = LoggerFactory.getLogger(AtmController.class);
@@ -59,6 +62,7 @@ public class AtmController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/balance/{accountNum}/{pin}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "Get Balance and Max Withdrawal information", response = AccountResource.class)
     @ResponseBody
     public AccountResource getBalance(@PathVariable Long accountNum, @PathVariable String pin)
             throws ApiException {
@@ -102,6 +106,7 @@ public class AtmController {
      * @throws ApiException {@link ErrorCodes#ACCOUNT_FUNDS} {@link ErrorMessages#ACCOUNT_FUNDS_INSUFFICIENT}
      */
     @RequestMapping(method = RequestMethod.GET, value = "/withdraw/{accountNum}/{pin}/{amount}")
+    @ApiOperation(value = "Withdraw funds from the ATM", response = WithdrawalResource.class)
     @Transactional(rollbackFor = ApiException.class)
     public WithdrawalResource withdraw(@PathVariable Long accountNum, @PathVariable String pin, @PathVariable Integer amount)
             throws ApiException {

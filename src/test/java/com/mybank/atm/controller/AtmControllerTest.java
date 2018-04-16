@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -152,6 +153,34 @@ public class AtmControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.code", is("A1002")))
                 .andExpect(jsonPath("$.message", is("Insufficient account balance")));
+    }
+
+    @Test
+    public void testWithdrawFundsEmptyATM() throws Exception {
+        Long testAccountNum = 494911101L ;
+        String testPin = "4425";
+        String url = getWithdrawUri(testAccountNum, testPin, "5");
+
+        // There are 20 fivers in the ATM. Take them all out
+        for(int i=0; i<20; i++) {
+            this.mockMvc.perform(get(url))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                    .andExpect(jsonPath("$.amount", is(5)))
+                    .andExpect(jsonPath("$.cashMap.fifty", is(0)))
+                    .andExpect(jsonPath("$.cashMap.twenty", is(0)))
+                    .andExpect(jsonPath("$.cashMap.ten", is(0)))
+                    .andExpect(jsonPath("$.cashMap.five", is(1)));
+        }
+
+        // The ATM is now empty of fivers
+
+        this.mockMvc.perform(get(url))
+                .andExpect(status().isBadRequest())
+                .andDo(print())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.code", is("S1001")))
+                .andExpect(jsonPath("$.message", is("Insufficient ATM notes to complete withdrawal")));
     }
 
     private String getBalanceUri(Long accountNum, String pin) {

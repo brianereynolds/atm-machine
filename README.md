@@ -24,7 +24,7 @@ docker run -p 7000:7000 docker.io/brianereynolds/atm-machine
 * Docker Hub: https://hub.docker.com/r/brianereynolds/atm-machine/
 
 ## Swagger
-Once the application is running, a Swagger definition is available here: http://localhost:7000/swagger-ui.html
+Once the application is running, a Swagger definition is available here: http://localhost:7000/swagger-ui.html.
 This can be used to call the API, or [build a client](https://github.com/swagger-api/swagger-codegen) in wide range of languages.
 
 ## Details
@@ -50,11 +50,11 @@ for dev/unit testing, but this should not be used in production. There are 2 tab
  - Safe: Monetary safe for maintaining the count of the notes in the ATM.
 
 These tables have been populated from [application data.sql](src/main/resources/data.sql).
-When running tests, data is also loaded from [test data.sql](src/main/test/resources/data.sql)
+When running tests, data is also loaded from [test data.sql](src/test/resources/data.sql)
 I have used [Spring Data JPA](https://projects.spring.io/spring-data-jpa/) to automatically wire a CRUD interface.
 
 ### Configuration
-The application (including logging) is configured using [application.yml](src/main/resources/application.yml
+The application (including logging) is configured using [application.yml](src/main/resources/application.yml)
 
 ### Testing
 I have tried to keep the test coverage above 90%. No tests have specifically been marked as "unit" vs "integration", although the [AtmControllerTest.java](src/test/java/com/mybank/atm/controller/AtmControllerTest.java) mostly closely resembles a integration test.
@@ -63,9 +63,9 @@ _Most_ tests leverage the test data that has been populated by the scripts. I ha
 All are run via
 ```gradle test```.
 
-Given more time I would create some cucumber-based "true" integration tests.
 Test coverage is created using [jacoco](http://www.eclemma.org/jacoco/).
 Any manual tests have been run via the [Swagger HTML client](http://localhost:7000/swagger-ui.html).
+Given more time I would create some cucumber-based "true" integration tests.
 
 ### Continuous Quality/Integration/Deployment
 I have used SonarLint (integration in Intellij) and

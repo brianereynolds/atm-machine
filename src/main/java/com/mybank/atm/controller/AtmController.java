@@ -15,10 +15,13 @@ import com.mybank.atm.service.PinService;
 import com.mybank.atm.service.SafeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +65,11 @@ public class AtmController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/balance/{accountNum}/{pin}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ApiOperation(value = "Get Balance and Max Withdrawal information", response = AccountResource.class)
+    @ApiOperation(value = "Get Balance and Max Withdrawal information")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response =  AccountResource.class),
+            @ApiResponse(code = 400, message = "Error", response = ErrorResource.class)
+    })
     @ResponseBody
     public AccountResource getBalance(@PathVariable Long accountNum, @PathVariable String pin)
             throws ApiException {
@@ -105,8 +112,13 @@ public class AtmController {
      * @throws ApiException {@link ErrorCodes#PIN_VALIDATION} {@link ErrorMessages#INVALID_PIN}
      * @throws ApiException {@link ErrorCodes#ACCOUNT_FUNDS} {@link ErrorMessages#ACCOUNT_FUNDS_INSUFFICIENT}
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/withdraw/{accountNum}/{pin}/{amount}")
-    @ApiOperation(value = "Withdraw funds from the ATM", response = WithdrawalResource.class)
+    @RequestMapping(method = RequestMethod.GET, value = "/withdraw/{accountNum}/{pin}/{amount}",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "Withdraw funds from the ATM")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response =  AccountResource.class),
+            @ApiResponse(code = 400, message = "Error", response = ErrorResource.class)
+    })
     @Transactional(rollbackFor = ApiException.class)
     public WithdrawalResource withdraw(@PathVariable Long accountNum, @PathVariable String pin, @PathVariable Integer amount)
             throws ApiException {
@@ -147,6 +159,7 @@ public class AtmController {
         return withdrawalResource;
     }
 
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ApiException.class)
     public ErrorResource handleApiException(ApiException e) {
         logger.error("handleApiException: code: {}, message: {}", e.getCode(), e.getMessage());
